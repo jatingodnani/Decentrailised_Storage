@@ -2,17 +2,17 @@
     box-sizing: border-box;
   }
   .modalBackground {
-      width: 90vw;
-      height: 130vh;
+      width: 80vw;
+      height: 80vh;
       background-color:#5555;
     position: fixed;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-    margin-left: 4%;
+      
+    margin-left: 8%;
       backdrop-filter: blur(10px);
-  
+ margin-top: -40px;
       z-index: 3;
     }
     
@@ -27,7 +27,7 @@
       flex-direction: column;
       position:relative;
       z-index: 56;
-      margin-bottom: 25%;
+      margin-bottom: 2%;
     }
     
     .modalContainer {

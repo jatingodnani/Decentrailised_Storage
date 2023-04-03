@@ -14,6 +14,7 @@ import Modal from "./components/Modal";
 
 import { fetchStorage } from "./utils/tzkt";
 import "./App.css";
+import { Visibility } from "@mui/icons-material";
 const context=createContext({});
  const App = () => {
 
@@ -21,11 +22,7 @@ const context=createContext({});
 
   const [modalOpen, setModalOpen] = useState(false);
 
-
-  
-
-
-   const hlo= async () => {
+    const hlo= async () => {
       const account = await getAccount();
       setAccount(account);
 
@@ -40,7 +37,7 @@ const context=createContext({});
 <context.Provider value={{account,setAccount,hlo}}>
  
     <div className="h-300">
-      <Navbar />
+    {!modalOpen && <Navbar />}
       <div 
       style={{
         paddingTop: '75px'
@@ -52,7 +49,7 @@ const context=createContext({});
         </button>
       )}
       {modalOpen && (
-        <Modal setModalOpen={setModalOpen} ></Modal>
+        <Modal setModalOpen={setModalOpen} modalopen={modalOpen}></Modal>
       )}
       
       

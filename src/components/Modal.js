@@ -8,7 +8,7 @@ import { context } from "../App";
 
 
 
-const Modal = ({ setModalOpen })=> {
+const Modal = ({ setModalOpen,modalopen })=> {
  
   const [contract, setContract] = useState(null);
   const httbc=(e)=>{

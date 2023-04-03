@@ -41,6 +41,7 @@ const Navbar = () => {
   
 
   return (
+   
     <div className="navbar navbar-dark bg-dark fixed-top">
       <div className="container py-2">
         <a href="/" className="navbar-brand" style={{fontWeight:"bold",fontSize:"25px"}}>
@@ -57,12 +58,14 @@ const Navbar = () => {
         </div>
        
       </div>
-   <LogoutIcon sx={{color:"white",width:"35px",height:"35px",cursor:"pointer"}} onClick={logOut} style={{ visibility: account ? 'visible': 'hidden'}} /> 
-     
+      <LogoutIcon sx={{color:"white",width:"35px",height:"35px",cursor:"pointer",paddingLeft:"-10px"}} onClick={logOut} style={{ visibility: account ? 'visible': 'hidden'}} /> 
       {/* <button style={{ visibility: account ? 'visible': 'hidden'}} onClick={logOut}>logout</button>  */}
      
   
     </div>
+
+     
+  
   );
 };
 
