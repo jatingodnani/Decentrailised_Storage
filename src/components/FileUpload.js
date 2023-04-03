@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import "./FileUpload.css";
 import { tezos } from "../utils/tezos";
-
 
 const FileUpload = ({account}) => {
   const [file, setFile] = useState(null);
@@ -31,16 +30,17 @@ const FileUpload = ({account}) => {
         });
         const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
         
-        
+      
         try{
           const contract = await tezos.wallet.at("KT1CXMpNtA2GMu35mbAWwnVfKvTjb8YoBsPz");
           const op =await contract.methods.add(ImgHash).send()
           await op.confirmation(1);
+          alert("Successfully Image Uploaded");
         }
         catch(err){
           throw err;
         }
-        alert("Successfully Image Uploaded");
+     
           
       } catch (e) {
         alert("Unable to upload image to Pinata");

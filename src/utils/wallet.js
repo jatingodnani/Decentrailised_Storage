@@ -22,9 +22,8 @@ export const getAccount = async () => {
     }
 };
 
-/**export const logOut = async () => {
-    const connectedWallet = await wallet.client.getActiveAccount();
-    connectWallet.logOut;
+export const LogOut = async () => {
+    await wallet.clearActiveAccount();
 
 
-}**/
+}

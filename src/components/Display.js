@@ -77,10 +77,15 @@ const Display = () => {
   };
   return (
     <>
-      <button className="center button" onClick={getdata} style={{marginTop:"-27px"}}>
+      <button className="center button" onClick={getdata} >
         Get Your Data
       </button>
-      <div style={{display:"flex",marginLeft:"27%"}}>
+      <button className="center button" onClick={()=>{
+        window.location.reload();
+      }} style={{background:"red",marginLeft:"10px"}}>
+       Hide Your Data
+      </button>
+      <div style={{display:"flex",marginLeft:"27%",marginBottom:"30px",marginTop:"30px"}}>
 
       <hr className="divider" style={{marginRight:"5px",width:"30%", height:"4px"}} /> 
       <span style={{marginTop:"-22px",fontWeight:"bold"}}>OR</span> 
@@ -92,8 +97,13 @@ const Display = () => {
         placeholder="Enter Other Address"
         className="address"
       ></input>
-      <button className="center button data" onClick={getOtherData} style={{marginBottom:"50px"}}>
+      <button  onClick={getOtherData} className="ynn">
         Get Others Data
+      </button>
+      <button   onClick={()=>{
+        window.location.reload();
+       }} className="ynn" style={{background:"red",marginLeft:"10px"}}>
+        Hide Others Data
       </button>
       <div className="image-list">{data}</div>
 

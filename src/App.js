@@ -1,4 +1,6 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
+import { createContext } from "react";
+
 
 // Components
 import Navbar from "./components/Navbar";
@@ -12,27 +14,31 @@ import Modal from "./components/Modal";
 
 import { fetchStorage } from "./utils/tzkt";
 import "./App.css";
+const context=createContext({});
+ const App = () => {
 
-const App = () => {
-
-  const [account, setAccount] = useState("");
+  const [account, setAccount] = useState(null);
 
   const [modalOpen, setModalOpen] = useState(false);
 
 
-  useEffect(() => {
+  
 
 
-    (async () => {
+   const hlo= async () => {
       const account = await getAccount();
       setAccount(account);
 
-    })();
-  }, []);
+    }
+    useEffect(()=>{
+      hlo();
+    })
+
 
   return (
 
-
+<context.Provider value={{account,setAccount,hlo}}>
+ 
     <div className="h-300">
       <Navbar />
       <div 
@@ -41,7 +47,7 @@ const App = () => {
       }}
       ></div>
       {!modalOpen && (
-        <button className="share" onClick={() => setModalOpen(true)}>
+        <button className="share" onClick={()=>setModalOpen(true)}>
           Share
         </button>
       )}
@@ -51,8 +57,8 @@ const App = () => {
       
       
 
-      <div className="App">
-        <h1 style={{ color: "white" }}>File Storage</h1>
+      <div className="App" style={{marginTop:"-55px"}}>
+        <h1 style={{ color: "white"}}>File Storage</h1>
         <div class="bg"></div>
         <div class="bg bg2"></div>
         <div class="bg bg3"></div>
@@ -65,7 +71,10 @@ const App = () => {
         <Display ></Display>
       </div>
     </div>
+    </context.Provider>
   );
 };
 
 export default App;
+export {context}
+

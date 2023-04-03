@@ -1,28 +1,41 @@
 
-import { useEffect, useState } from "react";
-import { connectWallet, getAccount } from "../utils/wallet";
+import { useContext, useEffect, useState } from "react";
+import { connectWallet, getAccount, LogOut } from "../utils/wallet";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { wallet } from "../utils/wallet";
-const Navbar = () => {
-  const [account, setAccount] = useState("");
+import { context } from "../App";
 
+
+
+
+const Navbar = () => {
+  const { account,setAccount,hlo }=useContext(context);
+  const [set,useset]=useState(false);
   useEffect(() => {
-    (async () => {
-      // TODO 5.b - Get the active account
-      const account = await getAccount();
-      setAccount(account);
-    })();
-  }, []);
+  (async ()=>{hlo()})(); 
+  });
 
   // TODO 4.a - Complete onConnectWallet function
-  const onConnectWallet = async () => {
+  const onConnectWallet = async (e) => {
+    
     await connectWallet();
-    const account = await getAccount();
-    setAccount(account);
+   hlo();
+   useset(true);
   };
 
   const logOut = async() => {
-    await wallet.disconnect();
+    try{
+ await LogOut();
+  setAccount(null)
+ 
+    }
+    catch(error){
+      console.log(error)
+    }
+
+ console.log(account)
+ 
+ 
   }
 
   
@@ -36,7 +49,7 @@ const Navbar = () => {
         <div className="d-flex">
           {/* TODO 4.b - Call connectWallet function onClick  */}
          
-          <button onClick={onConnectWallet} className="btn btn-outline-info">
+          <button onClick={onConnectWallet} name="butt" className="btn btn-outline-info">
             {/* TODO 5.a - Show account address if wallet is connected */}
             { account ? "Connected" : "Connect Wallet"}
           </button>
@@ -44,9 +57,11 @@ const Navbar = () => {
         </div>
        
       </div>
-      {account &&
-      <LogoutIcon onClick = {logOut} style={{color:"white",marginRight:"65px",fontSize:"30px"}}/>
-}
+   <LogoutIcon sx={{color:"white",width:"35px",height:"35px",cursor:"pointer"}} onClick={logOut} style={{ visibility: account ? 'visible': 'hidden'}} /> 
+     
+      {/* <button style={{ visibility: account ? 'visible': 'hidden'}} onClick={logOut}>logout</button>  */}
+     
+  
     </div>
   );
 };
